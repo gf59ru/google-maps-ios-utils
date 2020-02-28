@@ -16,12 +16,12 @@ typedef enum
 {
     MarkerObjStatusNormal,
     MarkerObjStatusPin
-}  MarkerObjStatus;
+}
+MarkerObjStatus;
 
 @interface CustomClusterRenderer : GMUDefaultClusterRenderer
-{
-    MarkerObjStatus tag;
-}
+
+@property (nonatomic) MarkerObjStatus tag;
 
 - (void)setIsShowMarkersAndClusters:(BOOL)newValue;
 
