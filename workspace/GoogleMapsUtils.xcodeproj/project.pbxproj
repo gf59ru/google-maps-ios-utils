@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0229C0FD1D9B4C0800551202 /* CustomMarkerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0229C0FC1D9B4C0800551202 /* CustomMarkerViewController.m */; };
 		0242D2171C7E759D00557130 /* GMUStaticClusterTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0242D2161C7E759D00557130 /* GMUStaticClusterTest.m */; };
-		0245B58C1CED786A00ABBB7D /* GMUWrappingDictionaryKeyTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0245B58B1CED786A00ABBB7D /* GMUWrappingDictionaryKeyTest.m */; };
 		0245B58E1CEED4CB00ABBB7D /* GMUGridBasedClusterAlgorithmTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0245B58D1CEED4CB00ABBB7D /* GMUGridBasedClusterAlgorithmTest.m */; };
 		0245B5901CEEE8E900ABBB7D /* GMUClusterAlgorithmTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 0245B58F1CEEE8E900ABBB7D /* GMUClusterAlgorithmTest.m */; };
 		02847CFF1CF2949700508850 /* GMUNonHierarchicalDistanceBasedAlgorithmTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 02847CFE1CF2949700508850 /* GMUNonHierarchicalDistanceBasedAlgorithmTest.m */; };
@@ -1092,7 +1091,6 @@
 				3491C8001E5D191500A2FA04 /* GMUGroundOverlayTest.m in Sources */,
 				3491C7FC1E5D190D00A2FA04 /* GMUGeometryRendererTest.m in Sources */,
 				0245B5901CEEE8E900ABBB7D /* GMUClusterAlgorithmTest.m in Sources */,
-				0245B58C1CED786A00ABBB7D /* GMUWrappingDictionaryKeyTest.m in Sources */,
 				3491C8021E5D191500A2FA04 /* GMUPlacemarkTest.m in Sources */,
 				02847CFF1CF2949700508850 /* GMUNonHierarchicalDistanceBasedAlgorithmTest.m in Sources */,
 				3491C8031E5D191500A2FA04 /* GMUPointTest.m in Sources */,
@@ -1393,6 +1391,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
+					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = GoogleMapsUtils/Info.plist;
@@ -1438,6 +1437,10 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
+				);
+				"FRAMEWORK_SEARCH_PATHS[arch=*]" = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleMaps/Maps/Frameworks",
 				);
