@@ -18,8 +18,6 @@
 
 #import <GoogleMaps/GoogleMaps.h>
 
-#import "GMUStyleMap.h"
-
 NS_ASSUME_NONNULL_BEGIN
 
 @class GMUStyle;
@@ -41,8 +39,6 @@ NS_ASSUME_NONNULL_BEGIN
  * The styles parsed from the KML file.
  */
 @property(nonatomic, readonly) NSArray<GMUStyle *> *styles;
-
-@property(nonatomic, readonly) NSArray<GMUStyleMap *> *styleMaps;
 
 /**
  * Parses the stored KML document.

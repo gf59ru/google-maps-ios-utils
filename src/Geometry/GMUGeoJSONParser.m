@@ -163,23 +163,26 @@ static NSString *const kGMUGeometryRegex =
   _isParsed = true;
 }
 
-- (GMUFeature *)featureFromDict:(NSDictionary *)feature {
-  id<GMUGeometry> geometry;
-  NSString *identifier = [feature objectForKey:kGMUIdMember];
-  GMSCoordinateBounds *boundingBox;
-  NSDictionary *properties = [feature objectForKey:kGMUPropertiesMember];
-  if ([feature objectForKey:kGMUGeometryMember]) {
-    geometry = [self geometryFromDict:[feature objectForKey:kGMUGeometryMember]];
-  }
-  if (_boundingBox) {
-    boundingBox = _boundingBox;
-  } else if ([feature objectForKey:kGMUBoundingBoxMember]) {
-    boundingBox = [self boundingBoxFromCoordinates:[feature objectForKey:kGMUBoundingBoxMember]];
-  }
-  return [[GMUFeature alloc] initWithGeometry:geometry
-                                   identifier:identifier
-                                   properties:properties
-                                  boundingBox:boundingBox];
+- (GMUFeature *)featureFromDict:(NSDictionary *)feature
+{
+    id geometryMember = [feature objectForKey:kGMUGeometryMember];
+    if (geometryMember == nil) { return nil; }
+
+    id<GMUGeometry> geometry = [self geometryFromDict:geometryMember];;
+    NSString *identifier = [feature objectForKey:kGMUIdMember];
+    GMSCoordinateBounds *boundingBox;
+    NSDictionary *properties = [feature objectForKey:kGMUPropertiesMember];
+
+    if (_boundingBox) { boundingBox = _boundingBox; }
+    else if ([feature objectForKey:kGMUBoundingBoxMember])
+    {
+        boundingBox = [self boundingBoxFromCoordinates:[feature objectForKey:kGMUBoundingBoxMember]];
+    }
+
+    return [[GMUFeature alloc] initWithGeometry:geometry
+                                     identifier:identifier
+                                     properties:properties
+                                    boundingBox:boundingBox];
 }
 
 - (NSArray<GMUFeature *> *)featureCollectionFromDict:(NSDictionary *)features {

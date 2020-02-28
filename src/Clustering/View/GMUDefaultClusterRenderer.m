@@ -17,9 +17,10 @@
 #error "This file requires ARC support."
 #endif
 
+#import "GMUDefaultClusterRenderer+Testing.h"
+
 #import <GoogleMaps/GoogleMaps.h>
 
-#import "GMUDefaultClusterRenderer.h"
 #import "GMUClusterIconGenerator.h"
 #import "GMUWrappingDictionaryKey.h"
 
@@ -31,14 +32,14 @@ static const NSUInteger kGMUMinClusterSize = 4;
 static const float kGMUMaxClusterZoom = 20;
 
 // Animation duration for marker splitting/merging effects.
-static const double kGMUAnimationDuration = 0.5;  // seconds.
+static const double kGMUAnimationDuration = 0.2;  // seconds.
 
 @implementation GMUDefaultClusterRenderer {
   // Map view to render clusters on.
   __weak GMSMapView *_mapView;
 
   // Collection of markers added to the map.
-  NSMutableArray<GMSMarker *> *_mutableMarkers;
+  NSMutableArray<GMSMarker *> *_markers;
 
   // Icon generator used to create cluster icon.
   id<GMUClusterIconGenerator> _clusterIconGenerator;
@@ -66,15 +67,11 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
            clusterIconGenerator:(id<GMUClusterIconGenerator>)iconGenerator {
   if ((self = [super init])) {
     _mapView = mapView;
-    _mutableMarkers = [[NSMutableArray<GMSMarker *> alloc] init];
+    _markers = [[NSMutableArray<GMSMarker *> alloc] init];
     _clusterIconGenerator = iconGenerator;
     _renderedClusters = [[NSMutableSet alloc] init];
     _renderedClusterItems = [[NSMutableSet alloc] init];
     _animatesClusters = YES;
-    _minimumClusterSize = kGMUMinClusterSize;
-    _maximumClusterZoom = kGMUMaxClusterZoom;
-    _animationDuration = kGMUAnimationDuration;
-
     _zIndex = 1;
   }
   return self;
@@ -85,7 +82,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
 }
 
 - (BOOL)shouldRenderAsCluster:(id<GMUCluster>)cluster atZoom:(float)zoom {
-  return cluster.count >= _minimumClusterSize && zoom <= _maximumClusterZoom;
+  return cluster.count >= kGMUMinClusterSize && zoom <= kGMUMaxClusterZoom;
 }
 
 #pragma mark GMUClusterRenderer
@@ -99,8 +96,8 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
   } else {
     // No animation, just remove existing markers and add new ones.
     _clusters = [clusters copy];
-    [self clearMarkers:_mutableMarkers];
-    _mutableMarkers = [[NSMutableArray<GMSMarker *> alloc] init];
+    [self clearMarkers:_markers];
+    _markers = [[NSMutableArray<GMSMarker *> alloc] init];
     [self addOrUpdateClusters:clusters animated:NO];
   }
 }
@@ -115,8 +112,8 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
 
   _clusters = [clusters copy];
 
-  NSArray *existingMarkers = _mutableMarkers;
-  _mutableMarkers = [[NSMutableArray<GMSMarker *> alloc] init];
+  NSArray *existingMarkers = _markers;
+  _markers = [[NSMutableArray<GMSMarker *> alloc] init];
 
   [self addOrUpdateClusters:clusters animated:isZoomingIn];
 
@@ -162,7 +159,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
 
     // All is good, perform the animation.
     [CATransaction begin];
-    [CATransaction setAnimationDuration:_animationDuration];
+    [CATransaction setAnimationDuration:kGMUAnimationDuration];
     CLLocationCoordinate2D toPosition = toCluster.position;
     marker.layer.latitude = toPosition.latitude;
     marker.layer.longitude = toPosition.longitude;
@@ -170,7 +167,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
   }
 
   // Clears existing markers after animation has presumably ended.
-  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, _animationDuration * NSEC_PER_SEC),
+  dispatch_after(dispatch_time(DISPATCH_TIME_NOW, kGMUAnimationDuration * NSEC_PER_SEC),
                  dispatch_get_main_queue(), ^{
                    [self clearMarkers:markers];
                  });
@@ -182,8 +179,10 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
   [self addOrUpdateClusters:_clusters animated:NO];
 }
 
+#pragma mark Testing
+
 - (NSArray<GMSMarker *> *)markers {
-  return [_mutableMarkers copy];
+  return _markers;
 }
 
 #pragma mark Private
@@ -275,7 +274,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
                                         userData:cluster
                                      clusterIcon:icon
                                         animated:animated];
-    [_mutableMarkers addObject:marker];
+    [_markers addObject:marker];
   } else {
     for (id<GMUClusterItem> item in cluster.items) {
       CLLocationCoordinate2D fromPosition = kCLLocationCoordinate2DInvalid;
@@ -292,7 +291,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
                                           userData:item
                                        clusterIcon:nil
                                           animated:shouldAnimate];
-      [_mutableMarkers addObject:marker];
+      [_markers addObject:marker];
       [_renderedClusterItems addObject:item];
     }
   }
@@ -307,6 +306,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
   return marker ?: [[GMSMarker alloc] init];
 }
 
+//todo: one
 // Returns a marker at final position of |position| with attached |userData|.
 // If animated is YES, animates from the closest point from |points|.
 - (GMSMarker *)markerWithPosition:(CLLocationCoordinate2D)position
@@ -331,7 +331,7 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
 
   if (animated) {
     [CATransaction begin];
-    [CATransaction setAnimationDuration:_animationDuration];
+    [CATransaction setAnimationDuration:kGMUAnimationDuration];
     marker.layer.latitude = position.latitude;
     marker.layer.longitude = position.longitude;
     [CATransaction commit];
@@ -376,8 +376,8 @@ static const double kGMUAnimationDuration = 0.5;  // seconds.
 
 // Removes all existing markers from the attached map.
 - (void)clear {
-  [self clearMarkers:_mutableMarkers];
-  [_mutableMarkers removeAllObjects];
+  [self clearMarkers:_markers];
+  [_markers removeAllObjects];
   [_renderedClusters removeAllObjects];
   [_renderedClusterItems removeAllObjects];
   [_itemToNewClusterMap removeAllObjects];

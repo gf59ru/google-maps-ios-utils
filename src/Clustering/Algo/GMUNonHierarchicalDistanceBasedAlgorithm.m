@@ -120,6 +120,14 @@ static const double kGMUMapPointWidth = 2.0;  // MapPoint is in a [-1,1]x[-1,1] 
 }
 
 /**
+ * Clears all items.
+ */
+- (NSMutableArray<id<GMUClusterItem>> *)getAllClusterItems {
+    return _items;
+}
+
+
+/**
  * Returns the set of clusters of the added items.
  */
 - (NSArray<id<GMUCluster>> *)clustersAtZoom:(float)zoom {

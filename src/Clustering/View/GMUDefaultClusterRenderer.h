@@ -72,15 +72,6 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GMUDefaultClusterRenderer : NSObject<GMUClusterRenderer>
 
 /**
- * Creates a new cluster renderer with a given map view and icon generator.
- *
- * @param mapView The map view to use.
- * @param iconGenerator The icon generator to use. Can be subclassed if required.
- */
-- (instancetype)initWithMapView:(GMSMapView *)mapView
-           clusterIconGenerator:(id<GMUClusterIconGenerator>)iconGenerator;
-
-/**
  * Animates the clusters to achieve splitting (when zooming in) and merging
  * (when zooming out) effects:
  * - splitting large clusters into smaller ones when zooming in.
@@ -102,35 +93,9 @@ NS_ASSUME_NONNULL_BEGIN
  * split into 3 clusters of size 3, 4, 5. For hierarchical clusters, the numbers
  * should add up however.
  *
- * Defaults to YES.
+ * Default to YES.
  */
 @property(nonatomic) BOOL animatesClusters;
-
-/**
- * Determines the minimum number of cluster items inside a cluster.
- * Clusters smaller than this threshold will be expanded.
- *
- * Defaults to 4.
- */
-@property(nonatomic) NSUInteger minimumClusterSize;
-
-/**
- * Sets the maximium zoom level of the map on which the clustering
- * should be applied. At zooms above this level, clusters will be expanded.
- * This is to prevent cases where items are so close to each other than they
- * are always grouped.
- *
- * Defaults to 20.
- */
-@property(nonatomic) NSUInteger maximumClusterZoom;
-
-/**
- * Sets the animation duration for marker splitting/merging effects.
- * Measured in seconds.
- *
- * Defaults to 0.5.
- */
-@property(nonatomic) double animationDuration;
 
 /**
  * Allows setting a zIndex value for the clusters.  This becomes useful
@@ -143,13 +108,19 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic) int zIndex;
 
+/**
+ *  CUSTOMIZE
+ */
+;
+@property(nonatomic) NSMutableArray<GMSMarker *> *markers;
+
+- (void)clearMarkers:(NSArray<GMSMarker *> *)markers;
+
 /** Sets to further customize the renderer. */
 @property(nonatomic, nullable, weak) id<GMUClusterRendererDelegate> delegate;
 
-/**
- * Returns currently active markers.
- */
-@property(nonatomic, readonly) NSArray<GMSMarker *> *markers;
+- (instancetype)initWithMapView:(GMSMapView *)mapView
+           clusterIconGenerator:(id<GMUClusterIconGenerator>)iconGenerator;
 
 /**
  * If returns NO, cluster items will be expanded and rendered as normal markers.

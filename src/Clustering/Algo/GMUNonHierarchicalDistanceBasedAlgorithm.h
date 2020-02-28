@@ -30,4 +30,10 @@
  */
 @interface GMUNonHierarchicalDistanceBasedAlgorithm : NSObject<GMUClusterAlgorithm>
 
+/**
+ * Returns the set of clusters of the added items.
+ */
+- (NSMutableArray *)getAllClusterItems;
+
+
 @end
