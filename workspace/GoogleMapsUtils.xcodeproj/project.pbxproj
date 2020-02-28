@@ -70,7 +70,7 @@
 		AA9033B223EBB8FF0079D0F2 /* GoogleMapsUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F849455B209C15CE00C60C05 /* GoogleMapsUtils.framework */; };
 		AA9033B723EBB9E90079D0F2 /* GMUClusterAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 0242D18C1C7C19E600557130 /* GMUClusterAlgorithm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B4F9453C1F02181900FBF534 /* HeatmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F9453A1F02181900FBF534 /* HeatmapViewController.m */; };
-		BA22AC7124091CCF002177B0 /* CustomClusterRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = BA22AC6F24091CCE002177B0 /* CustomClusterRenderer.h */; };
+		BA22AC7124091CCF002177B0 /* CustomClusterRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = BA22AC6F24091CCE002177B0 /* CustomClusterRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		BA22AC7224091CCF002177B0 /* CustomClusterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA22AC7024091CCF002177B0 /* CustomClusterRenderer.m */; };
 		F849455F209C15CE00C60C05 /* GoogleMapsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F849455D209C15CE00C60C05 /* GoogleMapsUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8494564209C168F00C60C05 /* GMUGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F945351F02180900FBF534 /* GMUGradient.m */; };
@@ -783,6 +783,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA22AC7124091CCF002177B0 /* CustomClusterRenderer.h in Headers */,
 				F8494586209C16B600C60C05 /* GMUDefaultClusterRenderer.h in Headers */,
 				F849458A209C16B600C60C05 /* GMUClusterManager.h in Headers */,
 				F849457A209C16B600C60C05 /* GMUGradient.h in Headers */,
@@ -816,7 +817,6 @@
 				F849457F209C16B600C60C05 /* GMUNonHierarchicalDistanceBasedAlgorithm.h in Headers */,
 				F8494588209C16B600C60C05 /* GMUCluster.h in Headers */,
 				F849457B209C16B600C60C05 /* GMUHeatmapTileLayer.h in Headers */,
-				BA22AC7124091CCF002177B0 /* CustomClusterRenderer.h in Headers */,
 				F8494591209C16B600C60C05 /* GMUGroundOverlay.h in Headers */,
 				F8494590209C16B600C60C05 /* GMUGeometryContainer.h in Headers */,
 				F8494599209C16B600C60C05 /* GMUGeometryRenderer.h in Headers */,
