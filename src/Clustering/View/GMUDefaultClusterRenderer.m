@@ -17,8 +17,6 @@
 #error "This file requires ARC support."
 #endif
 
-#import "GMUClusterAlgorithmTest.h"
-
 #import <GoogleMaps/GoogleMaps.h>
 
 #import "GMUDefaultClusterRenderer.h"
