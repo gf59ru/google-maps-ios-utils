@@ -70,8 +70,8 @@
 		AA9033B223EBB8FF0079D0F2 /* GoogleMapsUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F849455B209C15CE00C60C05 /* GoogleMapsUtils.framework */; };
 		AA9033B723EBB9E90079D0F2 /* GMUClusterAlgorithm.h in Headers */ = {isa = PBXBuildFile; fileRef = 0242D18C1C7C19E600557130 /* GMUClusterAlgorithm.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B4F9453C1F02181900FBF534 /* HeatmapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F9453A1F02181900FBF534 /* HeatmapViewController.m */; };
-		BA22AC7124091CCF002177B0 /* CustomClusterRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = BA22AC6F24091CCE002177B0 /* CustomClusterRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BA22AC7224091CCF002177B0 /* CustomClusterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA22AC7024091CCF002177B0 /* CustomClusterRenderer.m */; };
+		BA22AC7524092E05002177B0 /* CustomClusterRenderer.h in Headers */ = {isa = PBXBuildFile; fileRef = BA22AC7324092E04002177B0 /* CustomClusterRenderer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BA22AC7624092E05002177B0 /* CustomClusterRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = BA22AC7424092E05002177B0 /* CustomClusterRenderer.m */; };
 		F849455F209C15CE00C60C05 /* GoogleMapsUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = F849455D209C15CE00C60C05 /* GoogleMapsUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F8494564209C168F00C60C05 /* GMUGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F945351F02180900FBF534 /* GMUGradient.m */; };
 		F8494565209C168F00C60C05 /* GMUHeatmapTileLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = B4F945321F02180900FBF534 /* GMUHeatmapTileLayer.m */; };
@@ -303,8 +303,8 @@
 		B4F945361F02180900FBF534 /* GMUWeightedLatLng.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GMUWeightedLatLng.m; sourceTree = "<group>"; };
 		B4F9453A1F02181900FBF534 /* HeatmapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HeatmapViewController.m; path = ../app/HeatmapViewController.m; sourceTree = "<group>"; };
 		B4F9453B1F02181900FBF534 /* HeatmapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HeatmapViewController.h; path = ../app/HeatmapViewController.h; sourceTree = "<group>"; };
-		BA22AC6F24091CCE002177B0 /* CustomClusterRenderer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomClusterRenderer.h; sourceTree = "<group>"; };
-		BA22AC7024091CCF002177B0 /* CustomClusterRenderer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CustomClusterRenderer.m; sourceTree = "<group>"; };
+		BA22AC7324092E04002177B0 /* CustomClusterRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CustomClusterRenderer.h; path = ../src/CustomClusterRenderer.h; sourceTree = "<group>"; };
+		BA22AC7424092E05002177B0 /* CustomClusterRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CustomClusterRenderer.m; path = ../src/CustomClusterRenderer.m; sourceTree = "<group>"; };
 		EF75722FCCF71E3F0611D17F /* Pods-DevApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DevApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DevApp/Pods-DevApp.release.xcconfig"; sourceTree = "<group>"; };
 		F84944ED209BEBED00C60C05 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = Pods/GoogleMaps/Maps/Frameworks/GoogleMaps.framework; sourceTree = "<group>"; };
 		F849455B209C15CE00C60C05 /* GoogleMapsUtils.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = GoogleMapsUtils.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -384,8 +384,8 @@
 				0242D18A1C7C19E600557130 /* Clustering */,
 				3491C7BD1E5D184A00A2FA04 /* Geometry */,
 				0242D1AB1C7C19F700557130 /* QuadTree */,
-				BA22AC6F24091CCE002177B0 /* CustomClusterRenderer.h */,
-				BA22AC7024091CCF002177B0 /* CustomClusterRenderer.m */,
+				BA22AC7324092E04002177B0 /* CustomClusterRenderer.h */,
+				BA22AC7424092E05002177B0 /* CustomClusterRenderer.m */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -783,7 +783,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BA22AC7124091CCF002177B0 /* CustomClusterRenderer.h in Headers */,
 				F8494586209C16B600C60C05 /* GMUDefaultClusterRenderer.h in Headers */,
 				F849458A209C16B600C60C05 /* GMUClusterManager.h in Headers */,
 				F849457A209C16B600C60C05 /* GMUGradient.h in Headers */,
@@ -817,6 +816,7 @@
 				F849457F209C16B600C60C05 /* GMUNonHierarchicalDistanceBasedAlgorithm.h in Headers */,
 				F8494588209C16B600C60C05 /* GMUCluster.h in Headers */,
 				F849457B209C16B600C60C05 /* GMUHeatmapTileLayer.h in Headers */,
+				BA22AC7524092E05002177B0 /* CustomClusterRenderer.h in Headers */,
 				F8494591209C16B600C60C05 /* GMUGroundOverlay.h in Headers */,
 				F8494590209C16B600C60C05 /* GMUGeometryContainer.h in Headers */,
 				F8494599209C16B600C60C05 /* GMUGeometryRenderer.h in Headers */,
@@ -1104,11 +1104,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F8F2347421C4042E0045AE6E /* GMUPair.m in Sources */,
-				BA22AC7224091CCF002177B0 /* CustomClusterRenderer.m in Sources */,
 				F8494564209C168F00C60C05 /* GMUGradient.m in Sources */,
 				F8494565209C168F00C60C05 /* GMUHeatmapTileLayer.m in Sources */,
 				F8494566209C168F00C60C05 /* GMUWeightedLatLng.m in Sources */,
 				F8494567209C168F00C60C05 /* GMUGridBasedClusterAlgorithm.m in Sources */,
+				BA22AC7624092E05002177B0 /* CustomClusterRenderer.m in Sources */,
 				F8494568209C168F00C60C05 /* GMUNonHierarchicalDistanceBasedAlgorithm.m in Sources */,
 				F8F2347521C404310045AE6E /* GMUStyleMap.m in Sources */,
 				F8494569209C168F00C60C05 /* GMUSimpleClusterAlgorithm.m in Sources */,
